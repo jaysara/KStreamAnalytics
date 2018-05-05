@@ -17,4 +17,12 @@ This topic will have a generated stream created by ```PolicyEventProcessor``` cl
 #### application.properites.
 Make a note to how the binding to the actual Kafka topic happens through application.properties. The actual code still remains independant of your underlying messaging platform. This can bea strong design pattern over time.
 
-* I am using NativeCoding.
+* The property 'useNativeEnCoding'  and 'useNativeDecoding' is very important. By setting these values to be 'true' we are letting Kafka stream serializer serialize and deserialize the objects. In this example since, I want Long value to be serialized by using LongSerde. In thise case, Kafka stream serializer should be enabled by setting followng property,
+```
+spring.cloud.stream.bindings.policyPaidAnalytic.producer.useNativeEncoding=true
+```
+* For the `policyPaid` topic, I need the application/json content-type to be serialized by spring-kafka binder implementation. For this topic the encoding property is set to false. Followig property is commented out,
+```
+#spring.cloud.stream.bindings.policyPaid.producer.useNativeEncoding=true
+```
+
