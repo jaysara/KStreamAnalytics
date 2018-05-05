@@ -14,3 +14,7 @@ This topic will have a generated stream created by ```PolicyEventProcessor``` cl
 ```script
 ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic policyAnalytic
 ```
+#### application.properites.
+Make a note to how the binding to the actual Kafka topic happens through application.properties. The actual code still remains independant of your underlying messaging platform. This can bea strong design pattern over time.
+
+* I am using NativeCoding.
